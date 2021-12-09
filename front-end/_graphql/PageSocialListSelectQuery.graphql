@@ -1,0 +1,18 @@
+query PageSocialListSelectQuery {  
+    
+    getPageSocialList (authToken: "", limit: 5, page: 1) {
+
+        token
+        pageSocialCount
+        pageSocialList {
+            id
+            internalId
+            name
+            publisherPlatform {
+                idPublisherPlatform
+                valuePublisherPlatform
+            }
+            numAds
+        }
+    }
+}

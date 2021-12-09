@@ -1,0 +1,64 @@
+@import "../../../static/style/Reset.less";
+
+
+.table-list {
+    background-color: transparent;
+}
+
+
+.custom-table {
+
+    table {
+        width: 100%;
+        /* 
+        border: solid 1px #DDD;
+        border-top: 0px;
+        border-collapse: collapse;
+         */
+         
+        thead {
+
+            th {
+                padding: 10px 15px;
+                color: #777;
+            }
+        }
+
+        tbody {
+            
+            tr {
+
+              td {
+                color: #555;
+                font-size: 15px;
+                vertical-align: middle;
+                
+                .foreground {
+                    font-weight: 600;
+                }
+                .background {
+                    color: #777;
+                    font-size: 10px;
+                    font-weight: 400;
+                }
+
+                button.export-csv {
+                    color: #FFF;
+                    background-color: #14A23E;
+                    font-size: 12px;
+                }
+                .view-details {
+                    margin-left: 50px;
+                }
+              }
+            }
+        }
+        
+        td {
+            padding: 10px 15px;
+            border: solid 1px #DDD;
+            border-left: none;
+            border-right: none;
+        }
+    }
+}

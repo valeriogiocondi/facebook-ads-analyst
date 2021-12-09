@@ -1,0 +1,32 @@
+mutation BatchJobInsertMutation {
+        
+        insertBatchJob (
+            params: {
+                pageId: 153080620724,
+                publisherPlatformId: 0,
+                adActiveStatus: 0,
+                adReachedCountries: 2,
+                adType: 3,
+                impressionCondition: 2
+            }
+        ) {
+
+            id
+            pageSocial {
+                id
+                internalId
+                name
+                publisherPlatform {
+                    idPublisherPlatform
+                    valuePublisherPlatform
+                }
+            }
+            adActiveStatus
+            adReachedCountries
+            adType
+            impressionCondition
+            searchTerms
+            time
+            created
+        }
+    }

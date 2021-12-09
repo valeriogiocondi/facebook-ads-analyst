@@ -1,0 +1,28 @@
+query BatchJobListSelectQuery {
+    
+    getBatchJobList (authToken: "", limit: 5, page: 1) {
+        
+        token
+        batchJobCount
+        batchJobList {
+            id
+            pageSocial {
+                id
+                internalId
+                name
+                publisherPlatform {
+                    idPublisherPlatform
+                    valuePublisherPlatform
+                }
+            }
+            adActiveStatus
+            adReachedCountries
+            adType
+            impressionCondition
+            searchTerms
+            time
+            numAds
+            created
+        }
+    }
+}
