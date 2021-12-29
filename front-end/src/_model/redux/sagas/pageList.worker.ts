@@ -4,7 +4,7 @@ import { takeEvery, call } from 'redux-saga/effects';
 import PageSocialListSelectQueryGraphQL from '../../../_model/relay/query/PageSocialListSelectQuery';
 
 // SERVICE
-import RelayService from '../../../services/relay.service';
+import GraphqlService from '../../../services/graphql.service';
 import ReduxService from '../../../services/redux.service';
 
 
@@ -15,7 +15,7 @@ export function* pageListWorker() {
   
     try {
 
-      const res = yield call(RelayService.fetch, PageSocialListSelectQueryGraphQL, arg.payload.values);
+      const res = yield call(GraphqlService.fetch, PageSocialListSelectQueryGraphQL, arg.payload.values);
 
       // save response into redux
       ReduxService.action('SET_PAGE_LIST', res);

@@ -4,7 +4,7 @@ import React, { FunctionComponent } from 'react';
 import { AdsSpendType, AdsType } from '../../../_model/types/AdsType';
 
 // SERVICE
-import RelayService from "../../../services/relay.service"
+import GraphqlService from "../../../services/graphql.service"
 
 // GRAPHQL
 import PageSocialListSelectMutationGraphQL from '../../../_model/relay/mutation/PageSocialListSelectMutation';
@@ -71,7 +71,7 @@ const serializeData = (list: AdsType[]): any => {
 const changePagination = (page: number, limit: number, cb: Function) => {
 
     const params = { page: page, limit: limit };
-    RelayService.fetch(PageSocialListSelectMutationGraphQL, params, (data: any) => cb(data));
+    GraphqlService.fetch(PageSocialListSelectMutationGraphQL, params, (data: any) => cb(data));
 };
 
 

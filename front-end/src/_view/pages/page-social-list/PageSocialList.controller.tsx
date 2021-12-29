@@ -4,7 +4,7 @@ import React from 'react';
 import PageSocialType from "../../../_model/types/PageSocialType";
 
 // SERVICE
-import RelayService from "../../../services/relay.service"
+import GraphqlService from "../../../services/graphql.service"
 import ReduxService from '../../../services/redux.service';
 
 // GRAPHQL
@@ -13,7 +13,10 @@ import AdsBySocialPageIdSelectQueryGraphQL from '../../../_model/relay/query/Ads
 // UTILS
 import { exportCSV, socialUtils } from "../../../utils";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "../../../utils/const";
+import PubSub from 'pubsub-js'
 
+
+let openDialog: Function;
 
 const init = (): any => ReduxService.action('GET_PAGE_LIST', { page: DEFAULT_PAGE, limit: DEFAULT_LIMIT });
 
@@ -21,31 +24,36 @@ const serializeData = (list: PageSocialType[]): any => {
 
     const getCSV = (pageSocialInternalId: string) => {
 
-        const params = {
-            pageInternalId: pageSocialInternalId,
-        };
+        const fetchCSV: Function = () => { 
+
+            const params = {
+                pageInternalId: pageSocialInternalId,
+            };
+
+            GraphqlService
+                .fetch(AdsBySocialPageIdSelectQueryGraphQL, params, (data: any) => {
     
-        RelayService
-            .fetch(AdsBySocialPageIdSelectQueryGraphQL, params, (data: any) => {
-
-                switch (data.exportCsvAdsBySocialPageId.code) {
-
-                    case 200: {
-
-                        exportCSV("ads-list-" + pageSocialInternalId + ".csv", data.exportCsvAdsBySocialPageId.payload);
-                        break;
+                    switch (data.exportCsvAdsBySocialPageId.code) {
+    
+                        case 200: {
+    
+                            exportCSV("ads-list-" + pageSocialInternalId + ".csv", data.exportCsvAdsBySocialPageId.payload);
+                            break;
+                        }
+                        case 404: {
+    
+                            alert("Non sono presenti Ads per questa pagina");
+                            break;
+                        }
+                        default: {
+    
+                            break;
+                        }
                     }
-                    case 404: {
+            });
+        };
 
-                        alert("Non sono presenti Ads per questa pagina");
-                        break;
-                    }
-                    default: {
-
-                        break;
-                    }
-                }
-        });
+        PubSub.publish('DIALOG_CALLBACK', fetchCSV);
     };
     
     const data: any[] = list?.map((item: PageSocialType) => {

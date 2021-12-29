@@ -4,7 +4,7 @@ import React from 'react';
 import BatchJobType from "../../../_model/types/BatchJobType";
 
 // SERVICE
-import RelayService from "../../../services/relay.service"
+import GraphqlService from "../../../services/graphql.service"
 import ReduxService from '../../../services/redux.service';
 
 // GRAPHQL
@@ -39,7 +39,7 @@ const saveTask = (isNew: boolean, batchJob: BatchJobType, cb: Function) => {
 
     // TODO
     // Saga 
-    RelayService.fetch(graphlQuery, params, cb);
+    GraphqlService.fetch(graphlQuery, params, cb);
 };
 
 export default {

@@ -4,7 +4,7 @@ import React from 'react';
 // import BatchJobExecutedType from "../../../_model/types/BatchJobExecutedType";
 
 // SERVICE
-import RelayService from "../../../services/relay.service"
+import GraphqlService from "../../../services/graphql.service"
 import ReduxService from '../../../services/redux.service';
 
 // GRAPHQL

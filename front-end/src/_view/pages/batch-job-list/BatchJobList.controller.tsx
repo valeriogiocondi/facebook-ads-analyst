@@ -4,7 +4,7 @@ import React from 'react';
 import BatchJobType from "../../../_model/types/BatchJobType";
 
 // SERVICE
-import RelayService from "../../../services/relay.service"
+import GraphqlService from "../../../services/graphql.service"
 import ReduxService from '../../../services/redux.service';
 import FacebookService from "../../../services/facebook.service"
 
@@ -28,7 +28,7 @@ const serializeData = (list: BatchJobType[]): any => {
 			batchJobId: batchJobId,
 		};
 
-		RelayService.fetch(AdsByBatchJobIdSelectQueryGraphQL, params, (data: any) => {
+		GraphqlService.fetch(AdsByBatchJobIdSelectQueryGraphQL, params, (data: any) => {
 
 				switch (data.exportCsvAdsByBatchJobId.code) {
 
@@ -138,7 +138,7 @@ const serializeData = (list: BatchJobType[]): any => {
 //         */
 //         const data = { id: id };
         
-// 		RelayService.fetch(BatchJobListDeleteQueryGraphQL, { params: data }, (data: any) => {
+// 		GraphqlService.fetch(BatchJobListDeleteQueryGraphQL, { params: data }, (data: any) => {
 
 //             // TODO
 //             // it's a SPA, get id and use data-binding

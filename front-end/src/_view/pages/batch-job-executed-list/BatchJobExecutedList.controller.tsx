@@ -25,7 +25,7 @@ const serializeData = (list: BatchJobExecutedType[]): any => {
         //     pageInternalId: pageSocialInternalId,
         // };
     
-        // RelayService.fetch(AdsBySocialPageIdSelectQueryGraphQL, params)
+        // GraphqlService.fetch(AdsBySocialPageIdSelectQueryGraphQL, params)
         //     .then((data: any) => {
 
         //         switch (data.exportCsvAdsBySocialPageId.code) {

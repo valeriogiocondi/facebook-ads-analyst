@@ -4,7 +4,7 @@ import { takeEvery, call } from 'redux-saga/effects';
 import adsListSelectQueryGraphQL from '../../../_model/relay/query/AdsListSelectQuery';
 
 // SERVICE
-import RelayService from '../../../services/relay.service';
+import GraphqlService from '../../../services/graphql.service';
 import ReduxService from '../../../services/redux.service';
 
 
@@ -15,7 +15,7 @@ export function* adsListWorker() {
   
     try {
 
-      const res = yield call(RelayService.fetch, adsListSelectQueryGraphQL, arg.payload.values);
+      const res = yield call(GraphqlService.fetch, adsListSelectQueryGraphQL, arg.payload.values);
 
       // save response into redux
       ReduxService.action('SET_ADS_LIST', res);

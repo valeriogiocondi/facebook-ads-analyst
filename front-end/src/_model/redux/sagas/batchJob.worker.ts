@@ -5,7 +5,7 @@ import { takeEvery, call } from 'redux-saga/effects';
 import selectEditQueryGraphQL from '../../../_model/relay/query/BatchJobSelectEditQuery';
 
 // SERVICE
-import RelayService from '../../../services/relay.service';
+import GraphqlService from '../../../services/graphql.service';
 import ReduxService from '../../../services/redux.service';
 
 
@@ -18,7 +18,7 @@ export function* batchJobWorker() {
   
     try {
 
-      const res = yield call(RelayService.fetch, selectEditQueryGraphQL, arg.payload.values);
+      const res = yield call(GraphqlService.fetch, selectEditQueryGraphQL, arg.payload.values);
 
       // save response into redux
       ReduxService.action('SET_BATCH_JOB', res.data[TO_EXCLUDE]);

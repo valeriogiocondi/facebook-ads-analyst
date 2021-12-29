@@ -5,7 +5,7 @@ import { configServer } from '../config';
 import LoginService from "./login.service"
 
 
-class RelayService {
+class GraphqlService {
 
     async fetch(queryGraphql: string, params: any, callback?: Function): Promise<any> {
 
@@ -30,4 +30,4 @@ class RelayService {
 
 // SINGLETON
 // Export an instance of the class directly
-export default new RelayService();
+export default new GraphqlService();
