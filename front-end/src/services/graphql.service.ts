@@ -2,12 +2,15 @@
 import { configServer } from '../config';
 
 // SERVICE
-import LoginService from "./login.service"
+import LoginService from "./login.service";
+import MessageQueue from './messageQueue.service';
 
 
 class GraphqlService {
 
     async fetch(queryGraphql: string, params: any, callback?: Function): Promise<any> {
+        
+        MessageQueue.publish('OPEN_LOADER');
 
         return await fetch(configServer.ADDR_GRAPHQL, {
             method: 'POST',
@@ -22,8 +25,14 @@ class GraphqlService {
         })
         .then((res) => {
             
+            MessageQueue.publish('CLOSE_LOADER');
             callback && callback();
             return res.json();
+            
+        }).catch((err) => {
+            
+            MessageQueue.publish('CLOSE_LOADER');
+            console.error(err)
         });
     }   
 }
