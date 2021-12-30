@@ -26,26 +26,30 @@ import PageSocial from './_view/pages/page-social/PageSocial';
 import Login from './_view/pages/login/Login';
 import Logout from './_view/pages/logout/Logout';
 import Page404 from './_view/pages/error/error-404/Error404';
+import Loader from './_view/components/Loader/Loader';
 
 const Index = ({ store }) => (
-  <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route exact path="/login" component={ Login } />
-        <Route exact path="/logout" component={ Logout } />
-        <Route exact path="/" component={ PageSocialList } />
-        <Route exact path="/page-social/" component={ PageSocialList } />
-        <Route exact path="/page-social/:id/:internalID" component={ PageSocial } />
-        <Route exact path="/batch-job-list/" component={ BatchJobList } />
-        <Route exact path="/batch-job/:type" component={ BatchJob } />
-        <Route exact path="/batch-job/:type/:id" component={ BatchJob } />
-        <Route exact path="/batch-job-executed-list/" component={ BatchJobExecutedList } />
-        <Route exact path="/batch-job-executed/:id" component={ BatchJobExecuted } />
-        <Route exact path="/ads/:id" component={ Ads } />
-        <Route component={ Page404 } />
-      </Switch>
-    </Router>
-  </Provider>
+  <>
+    <Loader></Loader>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={ Login } />
+          <Route exact path="/logout" component={ Logout } />
+          <Route exact path="/" component={ PageSocialList } />
+          <Route exact path="/page-social/" component={ PageSocialList } />
+          <Route exact path="/page-social/:id/:internalID" component={ PageSocial } />
+          <Route exact path="/batch-job-list/" component={ BatchJobList } />
+          <Route exact path="/batch-job/:type" component={ BatchJob } />
+          <Route exact path="/batch-job/:type/:id" component={ BatchJob } />
+          <Route exact path="/batch-job-executed-list/" component={ BatchJobExecutedList } />
+          <Route exact path="/batch-job-executed/:id" component={ BatchJobExecuted } />
+          <Route exact path="/ads/:id" component={ Ads } />
+          <Route component={ Page404 } />
+        </Switch>
+      </Router>
+    </Provider>
+  </>
 );
   
 ReactDOM.render(<Index store={store} />, document.getElementById('root'));
