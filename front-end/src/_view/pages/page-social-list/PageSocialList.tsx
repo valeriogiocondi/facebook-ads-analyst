@@ -17,6 +17,8 @@ import { utilities } from '../../../utils';
 
 // COMPONENTS
 import TableList from  '../../components/TableList/TableList';
+import Dialog from  '../../components/Dialog/Dialog';
+import DialogTypeEnum from  '../../components/Dialog/DialogType.enum';
 
 // STYLE
 import './PageSocialList.less';
@@ -61,6 +63,12 @@ const PageSocialList: FunctionComponent = () => {
 	return (
 		<Template type="page-list" title="Page List">
 			{ renderRedirect() }
+			<Dialog
+					title='Export CSV'
+					message='Sei sicuro di voler esportare il CSV?'
+					type={ DialogTypeEnum.CONFIRM }
+			>
+			</Dialog>
 			<section id="page-social-list">
 				<TableList 
 					data={ controller.serializeData(pageSocialList) }

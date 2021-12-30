@@ -6,6 +6,7 @@ import PageSocialType from "../../../_model/types/PageSocialType";
 // SERVICE
 import GraphqlService from "../../../services/graphql.service"
 import ReduxService from '../../../services/redux.service';
+import MessageQueue from '../../../services/messageQueue.service'
 
 // GRAPHQL
 import AdsBySocialPageIdSelectQueryGraphQL from '../../../_model/relay/query/AdsBySocialPageIdSelectQuery';
@@ -13,7 +14,6 @@ import AdsBySocialPageIdSelectQueryGraphQL from '../../../_model/relay/query/Ads
 // UTILS
 import { exportCSV, socialUtils } from "../../../utils";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "../../../utils/const";
-import PubSub from 'pubsub-js'
 
 
 let openDialog: Function;
@@ -53,7 +53,7 @@ const serializeData = (list: PageSocialType[]): any => {
             });
         };
 
-        PubSub.publish('DIALOG_CALLBACK', fetchCSV);
+        MessageQueue.publish('DIALOG_CALLBACK', fetchCSV);
     };
     
     const data: any[] = list?.map((item: PageSocialType) => {
