@@ -9,7 +9,7 @@ class MessageQueue  {
         PubSub.subscribe(topic, cb);
     }
 
-    publish(topic: string, cb: any): void {
+    publish(topic: string, cb?: any): void {
         
         PubSub.publish(topic, cb);
     }
